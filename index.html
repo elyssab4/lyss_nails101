@@ -3,17 +3,803 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Lyss Nails 💅🏽</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f7f4ef;
+      color: #34333a;
+    }
+
+    header {
+      background: #ebe5f2;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd4e5;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: #665477;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4e4854;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #756080;
+    }
+
+    .hero {
+      min-height: 500px;
+      text-align: center;
+      padding: 110px 20px;
+      background: linear-gradient(
+        135deg,
+        #e8e1f0,
+        #f5ead9,
+        #e2edf0
+      );
+    }
+
+    .small-title {
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 20px;
+      color: #76627f;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 55px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #77608b;
+    }
+
+    .hero p {
+      margin-bottom: 30px;
+    }
+
+    .button,
+    .submit-button {
+      display: inline-block;
+      border: none;
+      background: #756080;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      transition: 0.2s;
+    }
+
+    .button:hover,
+    .submit-button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .section {
+      padding: 75px 8%;
+      text-align: center;
+    }
+
+    .section h2,
+    .rules h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 35px;
+      margin-bottom: 12px;
+      color: #5d4c69;
+    }
+
+    .subtitle {
+      margin-bottom: 35px;
+      color: #777;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: white;
+      width: 250px;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(80, 70, 90, 0.08);
+    }
+
+    .featured {
+      border: 2px solid #c7b6d5;
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+    }
+
+    .price {
+      font-size: 27px;
+      font-weight: 600;
+      color: #756080;
+      margin: 8px 0;
+    }
+
+    .rules {
+      padding: 65px 8%;
+      text-align: center;
+      background: #e8e1f0;
+    }
+
+    .rule-box {
+      background: rgba(255,255,255,0.65);
+      max-width: 600px;
+      margin: 30px auto 0;
+      padding: 25px;
+      border-radius: 20px;
+      line-height: 2;
+    }
+
+    .booking-section {
+      background: #f7f4ef;
+    }
+
+    form {
+      max-width: 550px;
+      margin: 0 auto;
+      text-align: left;
+      background: white;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 10px 35px rgba(80, 70, 90, 0.08);
+    }
+
+    form > label {
+      display: block;
+      margin: 18px 0 7px;
+      font-weight: 500;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9d0dd;
+      border-radius: 12px;
+      font-family: "Poppins", sans-serif;
+      background: #faf9fb;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid #c7b6d5;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .location-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .location-option {
+      background: #eee7f3;
+      padding: 12px 16px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      width: auto;
+    }
+
+    .location-option:hover {
+      background: #ddd2e6;
+    }
+
+    .location-option input {
+      width: auto;
+      margin-right: 7px;
+    }
+
+    .upload-help {
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 25px;
+      font-size: 15px;
+    }
+
+    .success-message,
+    .error-message {
+      display: none;
+      max-width: 550px;
+      margin: 25px auto;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .success-message {
+      background: #e2eee5;
+      color: #3e654b;
+    }
+
+    .error-message {
+      background: #f1dddd;
+      color: #774747;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #34313a;
+      color: white;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 18px 5%;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .section {
+        padding: 55px 5%;
+      }
+
+      form {
+        padding: 25px;
+      }
+
+      .location-option {
+        width: 100%;
+      }
+
+    }
+
+  </style>
 </head>
+
 <body>
+
   <header>
-    <div class="logo">Lyss Nails</div>
+
+    <div class="logo">
+      Lyss Nails
+    </div>
+
     <nav>
       <a href="#services">Services</a>
       <a href="#booking">Book</a>
       <a href="#rules">Rules</a>
     </nav>
+
   </header>
+
+
   <main>
 
+    <section class="hero">
+
+      <p class="small-title">
+        ✨ NAIL APPOINTMENTS ✨
+      </p>
+
+      <h1>
+        Welcome to<br>
+        <span>Lyss Nails</span>
+      </h1>
+
+      <p>
+        Pretty nails, planned ahead. 💅🏽
+      </p>
+
+      <a class="button" href="#booking">
+        Book Your Appointment
+      </a>
+
+    </section>
+
+
+    <section id="services" class="section">
+
+      <h2>Services</h2>
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">💅🏽</div>
+
+          <h3>Hands</h3>
+
+          <p class="price">$10</p>
+
+          <p>
+            Hand nail appointment
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">✨</div>
+
+          <h3>Feet</h3>
+
+          <p class="price">$5</p>
+
+          <p>
+            Foot nail appointment
+          </p>
+
+        </div>
+
+
+        <div class="card featured">
+
+          <div class="icon">💎</div>
+
+          <h3>Hands + Feet</h3>
+
+          <p class="price">$10</p>
+
+          <p>
+            Both on the same day
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="rules" class="rules">
+
+      <h2>
+        Before You Book ✨
+      </h2>
+
+      <div class="rule-box">
+
+        <p>
+          ⏰ <strong>24-hour notice required</strong>
+        </p>
+
+        <p>
+          📅 Choose from the available appointment times.
+        </p>
+
+        <p>
+          🚫 Same-day appointments aren't available.
+        </p>
+
+        <p>
+          🏠 Choose where you want your appointment done.
+        </p>
+
+        <p>
+          💗 Please arrive on time.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section id="booking" class="section booking-section">
+
+      <h2>
+        Book Your Appointment
+      </h2>
+
+      <p class="subtitle">
+        Sahara's appointment details 💅🏽
+      </p>
+
+
+      <form id="bookingForm">
+
+        <label for="name">
+          Name
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="Sahara"
+          readonly
+        >
+
+
+        <label for="service">
+          Choose a service
+        </label>
+
+        <select
+          id="service"
+          name="service"
+          required
+        >
+
+          <option value="">
+            Select a service
+          </option>
+
+          <option value="Hands - $10">
+            Hands - $10
+          </option>
+
+          <option value="Feet - $5">
+            Feet - $5
+          </option>
+
+          <option value="Hands + Feet - $10">
+            Hands + Feet - $10
+          </option>
+
+        </select>
+
+
+        <label for="date">
+          Choose a date
+        </label>
+
+        <input
+          type="date"
+          id="date"
+          name="date"
+          required
+        >
+
+
+        <label for="time">
+          Choose an available time
+        </label>
+
+        <select
+          id="time"
+          name="time"
+          required
+          disabled
+        >
+
+          <option value="">
+            Choose a date first
+          </option>
+
+        </select>
+
+
+        <label>
+          Where should the appointment be? 🏠
+        </label>
+
+
+        <div class="location-options">
+
+          <label class="location-option">
+
+            <input
+              type="radio"
+              name="location"
+              value="Kitchen"
+              required
+            >
+
+            🍽️ Kitchen
+
+          </label>
+
+
+          <label class="location-option">
+
+            <input
+              type="radio"
+              name="location"
+              value="Bedroom"
+            >
+
+            🛏️ Bedroom
+
+          </label>
+
+
+          <label class="location-option">
+
+            <input
+              type="radio"
+              name="location"
+              value="Living Room"
+            >
+
+            🛋️ Living Room
+
+          </label>
+
+        </div>
+
+
+        <label for="design">
+          Nail design / notes
+        </label>
+
+        <textarea
+          id="design"
+          name="design"
+          placeholder="Tell me what you want 💅🏽"
+          rows="4"
+        ></textarea>
+
+
+        <label for="inspo">
+          Nail Inspo Picture 📸
+        </label>
+
+        <input
+          type="file"
+          id="inspo"
+          name="inspo"
+          accept="image/*"
+        >
+
+        <p class="upload-help">
+          Optional — upload a picture of the nails you want.
+        </p>
+
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          Request Appointment ✨
+        </button>
+
+      </form>
+
+
+      <div
+        id="successMessage"
+        class="success-message"
+      >
+
+        <h3>
+          Booking Request Created! 💅🏽
+        </h3>
+
+        <p>
+          Sahara's appointment request has been recorded.
+        </p>
+
+        <p>
+          Check with Lyss for confirmation. ✨
+        </p>
+
+      </div>
+
+
+      <div
+        id="errorMessage"
+        class="error-message"
+      >
+
+        Something went wrong.
+        Please try again.
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <p>
+      © 2026 Lyss Nails ✨
+    </p>
+
+    <p>
+      Made with 💅🏽 for Sahara
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    const dateInput =
+      document.getElementById("date");
+
+    const timeInput =
+      document.getElementById("time");
+
+    const bookingForm =
+      document.getElementById("bookingForm");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+
+    const availableTimes = [
+
+      "10:00 AM",
+      "11:00 AM",
+      "12:00 PM",
+      "1:00 PM",
+      "2:00 PM",
+      "3:00 PM",
+      "4:00 PM",
+      "5:00 PM",
+      "6:00 PM"
+
+    ];
+
+
+    // Require at least 24 hours notice
+
+    const minimumDate =
+      new Date(
+        Date.now() + 24 * 60 * 60 * 1000
+      );
+
+    const year =
+      minimumDate.getFullYear();
+
+    const month =
+      String(
+        minimumDate.getMonth() + 1
+      ).padStart(2, "0");
+
+    const day =
+      String(
+        minimumDate.getDate()
+      ).padStart(2, "0");
+
+    dateInput.min =
+      `${year}-${month}-${day}`;
+
+
+    // Show available times after date is selected
+
+    dateInput.addEventListener(
+      "change",
+      function() {
+
+        timeInput.innerHTML = "";
+
+        timeInput.disabled = false;
+
+        const firstOption =
+          document.createElement("option");
+
+        firstOption.value = "";
+
+        firstOption.textContent =
+          "Select a time";
+
+        timeInput.appendChild(
+          firstOption
+        );
+
+
+        availableTimes.forEach(
+          function(time) {
+
+            const option =
+              document.createElement("option");
+
+            option.value = time;
+
+            option.textContent = time;
+
+            timeInput.appendChild(
+              option
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    // Booking button
+
+    bookingForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        successMessage.style.display =
+          "block";
+
+        errorMessage.style.display =
+          "none";
+
+
+        successMessage.scrollIntoView({
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
