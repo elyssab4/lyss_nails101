@@ -707,96 +707,122 @@
 
     // Require at least 24 hours notice
 
-    const minimumDate =
-      new Date(
-        Date.now() + 24 * 60 * 60 * 1000
+  const minimumDate =
+    new Date(
+      Date.now() + 24 * 60 * 60 * 1000
+    );
+
+  const year =
+    minimumDate.getFullYear();
+
+  const month =
+    String(
+      minimumDate.getMonth() + 1
+    ).padStart(2, "0");
+
+  const day =
+    String(
+      minimumDate.getDate()
+    ).padStart(2, "0");
+
+  dateInput.min =
+    `${year}-${month}-${day}`;
+
+
+  // Show available times
+
+  dateInput.addEventListener(
+    "change",
+    function() {
+
+      timeInput.innerHTML = "";
+
+      timeInput.disabled = false;
+
+      const firstOption =
+        document.createElement("option");
+
+      firstOption.value = "";
+
+      firstOption.textContent =
+        "Select a time";
+
+      timeInput.appendChild(
+        firstOption
       );
 
-    const year =
-      minimumDate.getFullYear();
 
-    const month =
-      String(
-        minimumDate.getMonth() + 1
-      ).padStart(2, "0");
+      availableTimes.forEach(
+        function(time) {
 
-    const day =
-      String(
-        minimumDate.getDate()
-      ).padStart(2, "0");
+          const option =
+            document.createElement("option");
 
-    dateInput.min =
-      `${year}-${month}-${day}`;
+          option.value = time;
 
+          option.textContent = time;
 
-    // Show available times after date is selected
+          timeInput.appendChild(
+            option
+          );
 
-    dateInput.addEventListener(
-      "change",
-      function() {
+        }
+      );
 
-        timeInput.innerHTML = "";
-
-        timeInput.disabled = false;
-
-        const firstOption =
-          document.createElement("option");
-
-        firstOption.value = "";
-
-        firstOption.textContent =
-          "Select a time";
-
-        timeInput.appendChild(
-          firstOption
-        );
+    }
+  );
 
 
-        availableTimes.forEach(
-          function(time) {
+  // Submit booking
 
-            const option =
-              document.createElement("option");
+  bookingForm.addEventListener(
+    "submit",
+    function(event) {
 
-            option.value = time;
-
-            option.textContent = time;
-
-            timeInput.appendChild(
-              option
-            );
-
-          }
-        );
-
-      }
-    );
+      event.preventDefault();
 
 
-    // Booking button
+      // Hide the entire form
 
-    bookingForm.addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
+      bookingForm.style.display =
+        "none";
 
 
-        successMessage.style.display =
-          "block";
+      // Show confirmation
 
-        errorMessage.style.display =
-          "none";
+      successMessage.innerHTML = `
+
+        <h3>
+          Appointment Requested! 💅🏽✨
+        </h3>
+
+        <p>
+          Your booking request has been sent to Lyss.
+        </p>
+
+        <p>
+          Please wait for confirmation.
+        </p>
+
+        <p>
+          💗 Thank you for booking with Lyss Nails!
+        </p>
+
+      `;
 
 
-        successMessage.scrollIntoView({
-          behavior: "smooth"
-        });
+      successMessage.style.display =
+        "block";
 
-      }
-    );
 
-  </script>
+      successMessage.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+</script>
 
 </body>
 </html>
