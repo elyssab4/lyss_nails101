@@ -711,120 +711,135 @@
 
     // Require at least 24 hours notice
 
-  const minimumDate =
-    new Date(
-      Date.now() + 24 * 60 * 60 * 1000
-    );
+const minimumDate = new Date(
+  Date.now() + 24 * 60 * 60 * 1000
+);
 
-  const year =
-    minimumDate.getFullYear();
+const year = minimumDate.getFullYear();
 
-  const month =
-    String(
-      minimumDate.getMonth() + 1
-    ).padStart(2, "0");
+const month = String(
+  minimumDate.getMonth() + 1
+).padStart(2, "0");
 
-  const day =
-    String(
-      minimumDate.getDate()
-    ).padStart(2, "0");
+const day = String(
+  minimumDate.getDate()
+).padStart(2, "0");
 
-  dateInput.min =
-    `${year}-${month}-${day}`;
+dateInput.min = `${year}-${month}-${day}`;
 
 
-  // Show available times
+// Show available times
 
-  dateInput.addEventListener(
-    "change",
-    function() {
+dateInput.addEventListener("change", function () {
 
-      timeInput.innerHTML = "";
+  timeInput.innerHTML = "";
+  timeInput.disabled = false;
 
-      timeInput.disabled = false;
+  const firstOption =
+    document.createElement("option");
 
-      const firstOption =
-        document.createElement("option");
+  firstOption.value = "";
+  firstOption.textContent = "Select a time";
 
-      firstOption.value = "";
-
-      firstOption.textContent =
-        "Select a time";
-
-      timeInput.appendChild(
-        firstOption
-      );
+  timeInput.appendChild(firstOption);
 
 
-      availableTimes.forEach(
-        function(time) {
+  availableTimes.forEach(function(time) {
 
-          const option =
-            document.createElement("option");
+    const option =
+      document.createElement("option");
 
-          option.value = time;
+    option.value = time;
+    option.textContent = time;
 
-          option.textContent = time;
+    timeInput.appendChild(option);
 
-          timeInput.appendChild(
-            option
-          );
+  });
 
+});
+
+
+// Submit booking to Formspree
+
+bookingForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const formData =
+      new FormData(bookingForm);
+
+    try {
+
+      const response = await fetch(
+        bookingForm.action,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
         }
       );
 
+
+      if (response.ok) {
+
+        // Hide the form
+
+        bookingForm.style.display = "none";
+
+
+        // Show confirmation
+
+        successMessage.innerHTML = `
+
+          <h3>
+            Appointment Requested! 💅🏽✨
+          </h3>
+
+          <p>
+            Sahara's booking request was sent to Lyss.
+          </p>
+
+          <p>
+            📩 Lyss will check the booking and confirm it.
+          </p>
+
+          <p>
+            💗 Thank you for booking with Lyss Nails!
+          </p>
+
+        `;
+
+        successMessage.style.display = "block";
+
+        successMessage.scrollIntoView({
+          behavior: "smooth"
+        });
+
+
+      } else {
+
+        errorMessage.textContent =
+          "The booking could not be sent. Please try again.";
+
+        errorMessage.style.display = "block";
+
+      }
+
+    } catch (error) {
+
+      errorMessage.textContent =
+        "Something went wrong. Please check your internet connection and try again.";
+
+      errorMessage.style.display = "block";
+
     }
-  );
 
-
-  // Submit booking
-
-  bookingForm.addEventListener(
-    "submit",
-    function(event) {
-
-      event.preventDefault();
-
-
-      // Hide the entire form
-
-      bookingForm.style.display =
-        "none";
-
-
-      // Show confirmation
-
-      successMessage.innerHTML = `
-
-        <h3>
-          Appointment Requested! 💅🏽✨
-        </h3>
-
-        <p>
-          Your booking request has been sent to Lyss.
-        </p>
-
-        <p>
-          Please wait for confirmation.
-        </p>
-
-        <p>
-          💗 Thank you for booking with Lyss Nails!
-        </p>
-
-      `;
-
-
-      successMessage.style.display =
-        "block";
-
-
-      successMessage.scrollIntoView({
-        behavior: "smooth"
-      });
-
-    }
-  );
+  }
+);
 
 </script>
 
